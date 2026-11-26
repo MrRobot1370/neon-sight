@@ -1,0 +1,51 @@
+{
+  "model": "medium",
+
+  "model_presets": {
+    "light":  { "weights": "models/yolo26n.pt", "label": "YOLO26-N" },
+    "medium": { "weights": "models/yolo26s.pt", "label": "YOLO26-S" },
+    "heavy":  { "weights": "models/yolo26m.pt", "label": "YOLO26-M" }
+  },
+
+  "layers": {
+    "segment": { "weights": "models/yolo26s-seg.pt", "label": "YOLO26-S-seg" },
+    "pose":    { "weights": "models/yolo26n-pose.pt",   "label": "YOLO26-N-pose" },
+    "depth":   { "weights": "models/yolo26n-depth.pt",  "label": "YOLO26-N-depth" },
+    "yoloe":   { "weights": "models/yoloe-26s-seg.pt",  "label": "YOLOE-26S open-vocab" }
+  },
+
+  "inference": {
+    "device": "mps",
+    "imgsz": 640,
+    "half": true,
+    "confidence": 0.35,
+    "tracker": "bytetrack.yaml"
+  },
+
+  "camera": {
+    "index": 0,
+    "width": 1280,
+    "height": 720,
+    "fps": 60,
+    "mirror": true
+  },
+
+  "mission": {
+    "rounds": 5,
+    "seconds_per_round": 15,
+    "objects": ["cell phone", "cup", "bottle", "book", "mouse", "keyboard"]
+  },
+
+  "objects": [
+    { "coco": "person",     "label": "Person",   "icon": "🧑", "color": "#3DE8FF", "enabled": true },
+    { "coco": "cell phone", "label": "Phone",    "icon": "📱", "color": "#FF3D9A", "enabled": true },
+    { "coco": "cup",        "label": "Cup",      "icon": "☕", "color": "#FFC23D", "enabled": true },
+    { "coco": "bottle",     "label": "Bottle",   "icon": "🧴", "color": "#3DFF8A", "enabled": true },
+    { "coco": "wine glass", "label": "Glass",    "icon": "🍷", "color": "#9D6BFF", "enabled": true },
+    { "coco": "laptop",     "label": "Laptop",   "icon": "💻", "color": "#3D8BFF", "enabled": true },
+    { "coco": "mouse",      "label": "Mouse",    "icon": "🖱️", "color": "#FF8A3D", "enabled": true },
+    { "coco": "keyboard",   "label": "Keyboard", "icon": "⌨️", "color": "#F4FF3D", "enabled": true },
+    { "coco": "book",       "label": "Book",     "icon": "📖", "color": "#FF4D4D", "enabled": true },
+    { "coco": "scissors",   "label": "Scissors", "icon": "✂️", "color": "#F03DFF", "enabled": true }
+  ]
+}
